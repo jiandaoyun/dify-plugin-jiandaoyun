@@ -1,0 +1,31 @@
+identity:
+  name: "app"
+  author: "hectum_shen"
+  label:
+    en_US: "app management"
+    zh_Hans: "用户应用查询"
+    pt_BR: "jiandaoyun"
+description:
+  human:
+    en_US: "list all your jiandaoyun applications,according to the api-key permissions"
+    zh_Hans: "管理简道云应用，按照api-key的权限返回所有用户应用及其appid"
+    pt_BR: "most popular actions of jiandaoyun"
+  llm: "most popular actions of jiandaoyun applications"
+parameters:
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    label:
+      en_US: Limit
+      zh_Hans: 限制数量
+      pt_BR: Limit
+    human_description:
+      en_US: "most popular actions of jiandaoyun"
+      zh_Hans: "most popular actions of jiandaoyun"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "most popular actions of jiandaoyun"
+    form: llm
+extra:
+  python:
+    source: tools/app.py

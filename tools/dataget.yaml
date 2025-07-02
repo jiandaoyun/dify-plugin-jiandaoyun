@@ -1,0 +1,43 @@
+identity:
+  name: "app"
+  author: "hectum_shen"
+  label:
+    en_US: "app management"
+    zh_Hans: "用户应用查询"
+    pt_BR: "jiandaoyun"
+description:
+  human:
+    en_US: "list all your jiandaoyun applications,according to the api-key permissions"
+    zh_Hans: "管理简道云应用，按照api-key的权限返回所有用户应用及其appid"
+    pt_BR: "most popular actions of jiandaoyun"
+  llm: "most popular actions of jiandaoyun applications"
+parameters:
+  - name: app_id
+    type: string
+    required: true
+    label:
+      en_US: app_id
+      zh_Hans: app_id
+      pt_BR: app_id
+    human_description:
+      en_US: "app_id of the application you want to query"
+      zh_Hans: "应用的app_id"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "app_id of the application you want to query"
+    form: llm
+  - name: entry_id
+    type: string
+    required: true
+    label:
+      en_US: entry_id
+      zh_Hans: entry_id
+      pt_BR: entry_id
+    human_description:
+      en_US: "entry_id of the application you want to query"
+      zh_Hans: "应用的entry_id"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "entry_id of the application you want to query"
+    form: llm
+extra:
+  python:
+    source: tools/dataget.py

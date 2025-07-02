@@ -1,0 +1,58 @@
+identity:
+  name: "entry_get"
+  author: "hectum_shen"
+  label:
+    en_US: "entry list get"
+    zh_Hans: "用户表单查询（针对某一应用）"
+    pt_BR: "jiandaoyun"
+description:
+  human:
+    en_US: "list all your jiandaoyun entries in an application,according to the api-key permissions"
+    zh_Hans: "管理简道表单，按照api-key的权限返回所有表单及其entry_id"
+    pt_BR: "most popular actions of jiandaoyun"
+  llm: "list all your jiandaoyun entries in an application(by app_id),according to the api-key permissions"
+parameters:
+  - name: app_id
+    type: string
+    required: true
+    label:
+      en_US: app_id
+      zh_Hans: app_id
+      pt_BR: app_id
+    human_description:
+      en_US: "app_id of the application you want to query"
+      zh_Hans: "应用的app_id"
+      pt_BR: "app_id da aplicação que você deseja consultar"
+    llm_description: "app_id of the application you want to query"
+    form: llm
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    label:
+      en_US: Limit
+      zh_Hans: 限制数量
+      pt_BR: Limit
+    human_description:
+      en_US: "limit of the entries you want to query"
+      zh_Hans: "限制查询的表单数量"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "most popular actions of jiandaoyun"
+    form: llm
+  - name: offset
+    type: number
+    required: false
+    default: 0
+    label:
+      en_US: Offset
+      zh_Hans: 偏移量
+      pt_BR: Offset
+    human_description:
+      en_US: "offset of the entries you want to query"
+      zh_Hans: "偏移量"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "offset of the entries you want to query"
+    form: llm
+extra:
+  python:
+    source: tools/entryget.py

@@ -27,3 +27,5 @@ class AppTool(Tool):
             "message": "获取应用列表成功"
         }
         yield self.create_json_message(json_data)
+        concat_data = json.dumps(response, ensure_ascii=False, indent=2)
+        yield self.create_text_message(concat_data)

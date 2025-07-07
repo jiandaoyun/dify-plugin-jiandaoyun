@@ -11,10 +11,11 @@ identity:
     pt_BR: "most popular actions of jiandaoyun"
   icon: "jdy_icon.svg"
 tools:
-  - tools/jiandaoyun.yaml
   - tools/app.yaml
   - tools/entryget.yaml
   - tools/dataget.yaml
+  - tools/widget.yaml
+  - tools/datagetlist.yaml
 extra:
   python:
     source: provider/jiandaoyun.py

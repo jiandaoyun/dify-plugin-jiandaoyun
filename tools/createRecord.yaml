@@ -1,0 +1,56 @@
+identity:
+  name: "record_create"
+  author: "hectum_shen"
+  label:
+    en_US: "record create"
+    zh_Hans: "新建单条数据"
+    pt_BR: "jiandaoyun"
+description:
+  human:
+    en_US: "create new create in a jiandaoyun application,according to the api-key permissions"
+    zh_Hans: "在简道云应用中创建新数据"
+    pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
+  llm: "create new create in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+parameters:
+  - name: app_id
+    type: string
+    required: true
+    label:
+      en_US: app_id
+      zh_Hans: app_id
+      pt_BR: app_id
+    human_description:
+      en_US: "app_id of the application you want to query"
+      zh_Hans: "应用的app_id"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "app_id of the application you want to query"
+    form: llm
+  - name: entry_id
+    type: string
+    required: true
+    label:
+      en_US: entry_id
+      zh_Hans: entry_id
+      pt_BR: entry_id
+    human_description:
+      en_US: "entry_id is the id of the worksheet you want to query"
+      zh_Hans: "应用的entry_id"
+      pt_BR: "most popular actions of jiandaoyun"
+    llm_description: "entry_id is the id of the worksheet you want to query"
+    form: llm
+  - name: data
+    type: string
+    required: true
+    label:
+      en_US: data
+      zh_Hans: 具体数据
+      pt_BR: data
+    human_description:
+      en_US: "the actual data you want to create, in JSON format"
+      zh_Hans: "你想要创建的实际数据，JSON格式"
+      pt_BR: "os dados reais que você deseja criar, no formato JSON"
+    llm_description: "the actual data you want to create, in JSON format string"
+    form: llm
+extra:
+  python:
+    source: tools/createRecord.py

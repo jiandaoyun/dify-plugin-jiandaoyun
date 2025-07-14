@@ -12,10 +12,13 @@ identity:
   icon: "jdy_icon.svg"
 tools:
   - tools/app.yaml
-  - tools/entryget.yaml
+  - tools/getEntry.yaml
   - tools/dataget.yaml
   - tools/widget.yaml
-  - tools/datagetlist.yaml
+  - tools/createRecord.yaml
+  - tools/datalist.yaml
+  - tools/datacreatelist.yaml
+  - tools/dataupdate.yaml
 extra:
   python:
     source: provider/jiandaoyun.py

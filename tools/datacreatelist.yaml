@@ -1,16 +1,16 @@
 identity:
-  name: "data"
+  name: "data_create_list"
   author: "hectum_shen"
   label:
-    en_US: "data get"
-    zh_Hans: "查询单条数据"
+    en_US: "data list create"
+    zh_Hans: "新建多条数据"
     pt_BR: "jiandaoyun"
 description:
   human:
-    en_US: "get specific data from an entry in a jiandaoyun application,according to the api-key permissions"
-    zh_Hans: "管理简道云应用，按照api-key的权限返回用户检索的应用的表单中的一条或者多条数据（可以进行条件约束）"
-    pt_BR: "dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "get specific data from an entry in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+    en_US: "create new data in a jiandaoyun application,according to the api-key permissions"
+    zh_Hans: "在简道云应用中创建多条新数据"
+    pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
+  llm: "create many new data in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
 parameters:
   - name: app_id
     type: string
@@ -38,19 +38,19 @@ parameters:
       pt_BR: "most popular actions of jiandaoyun"
     llm_description: "entry_id of the application you want to query"
     form: llm
-  - name: data_id
+  - name: data_list
     type: string
     required: true
     label:
-      en_US: data_id
-      zh_Hans: data_id
-      pt_BR: data_id
+      en_US: data
+      zh_Hans: 具体数据
+      pt_BR: data
     human_description:
-      en_US: "data_id of the data you want to query"
-      zh_Hans: "数据的data_id"
-      pt_BR: "most popular actions of jiandaoyun"
+      en_US: "the actual data you want to create, in JSON format"
+      zh_Hans: "你想要创建的实际数据，JSON格式数据组成的数组"
+      pt_BR: "os dados reais que você deseja criar, no formato JSON"
     llm_description: "data_id of the data you want to query"
     form: llm
 extra:
   python:
-    source: tools/dataget.py
+    source: tools/datacreatelist.py

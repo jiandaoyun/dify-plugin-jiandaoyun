@@ -1,6 +1,6 @@
 import json
 from collections.abc import Generator
-from typing import Any, Dict
+from typing import Any
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
@@ -8,24 +8,27 @@ from dify_plugin.entities.tool import ToolInvokeMessage
 from utils.httpclient import APIRequestTool
 
 
-class AppTool(Tool):
+class DataupdateTool(Tool):
 
-    def get_app_list(self,data)->Dict[str, Any]:
+    def updateData(self, data: dict[str, Any]) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
         httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api", token=access_token)
-        return httpClient.create("v5/app/list",data=data)["data"]
+        return httpClient.create("v5/app/entry/data/update", data=data)["data"]
+
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        data = {"limit": tool_parameters.get("limit", 20)}
-        response = self.get_app_list(data=data)
+        data = tool_parameters.get("data", None)
+        if data is None:
+            raise ValueError("请求参数 'data' 不能为空")
+        data_update = self.updateData(tool_parameters)
         json_data = {
             "status": "success",
-            "data": response,
-            "message": "获取应用列表成功"
+            "data": json.dumps(data_update),
+            "message": "获取数据列表成功"
         }
+
         yield self.create_json_message(json_data)
-        concat_data = json.dumps(response, ensure_ascii=False, indent=2)
-        yield self.create_text_message(concat_data)
+        yield self.create_text_message(str(data))

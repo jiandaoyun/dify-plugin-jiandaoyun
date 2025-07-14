@@ -1,16 +1,16 @@
 identity:
-  name: "data"
+  name: "data_delete"
   author: "hectum_shen"
   label:
-    en_US: "data get"
-    zh_Hans: "查询单条数据"
+    en_US: "data delete"
+    zh_Hans: "删除单条数据"
     pt_BR: "jiandaoyun"
 description:
   human:
-    en_US: "get specific data from an entry in a jiandaoyun application,according to the api-key permissions"
-    zh_Hans: "管理简道云应用，按照api-key的权限返回用户检索的应用的表单中的一条或者多条数据（可以进行条件约束）"
-    pt_BR: "dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "get specific data from an entry in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+    en_US: "delete a specific data according to app_id,entry_id and data_id"
+    zh_Hans: "删除特定某一条数据"
+    pt_BR: "atualizar dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
+  llm: "delete a specific data in a jiandaoyun application(by app_id,entry_id and data_id),data is in JSON format string"
 parameters:
   - name: app_id
     type: string
@@ -46,11 +46,24 @@ parameters:
       zh_Hans: data_id
       pt_BR: data_id
     human_description:
-      en_US: "data_id of the data you want to query"
+      en_US: "data_id of the data you want to update"
       zh_Hans: "数据的data_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "data_id of the data you want to query"
+    llm_description: "data_id of the data you want to update"
+    form: llm
+  - name: data
+    type: string
+    required: true
+    label:
+      en_US: data
+      zh_Hans: 具体数据
+      pt_BR: data
+    human_description:
+      en_US: "the actual data you want to create, in JSON format"
+      zh_Hans: "你想要更新的实际数据，JSON格式"
+      pt_BR: "os dados reais que você deseja criar, no formato JSON"
+    llm_description: "the actual data you want to update, in JSON format string"
     form: llm
 extra:
   python:
-    source: tools/dataget.py
+    source: tools/dataupdate.py

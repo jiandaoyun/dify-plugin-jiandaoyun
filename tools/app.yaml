@@ -3,14 +3,14 @@ identity:
   author: "hectum_shen"
   label:
     en_US: "app management"
-    zh_Hans: "用户应用查询"
+    zh_Hans: "查询所有应用"
     pt_BR: "jiandaoyun"
 description:
   human:
     en_US: "list all your jiandaoyun applications,according to the api-key permissions"
     zh_Hans: "管理简道云应用，按照api-key的权限返回所有用户应用及其appid"
     pt_BR: "most popular actions of jiandaoyun"
-  llm: "most popular actions of jiandaoyun applications"
+  llm: "list all your jiandaoyun applications,according to authorization permissions"
 parameters:
   - name: limit
     type: number

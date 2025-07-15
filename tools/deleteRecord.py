@@ -10,12 +10,12 @@ from utils.httpclient import APIRequestTool
 
 class DataupdateTool(Tool):
 
-    def updateData(self, data: dict[str, Any]) -> dict[str, Any]:
+    def updateData(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/delete", data=data)["data"]
 
 
@@ -29,7 +29,7 @@ class DataupdateTool(Tool):
         data_id = tool_parameters.get("data_id", None)
         if not data_id:
             raise ValueError("data_id 不能为空")
-        data_update = self.updateData({"app_id": app_id, "entry_id":entry_id,"data_id": data_id})
+        data_update = self.updateData({"app_id": app_id, "entry_id":entry_id,"data_id": data_id},tool_parameters.get("base_url"))
         try:
             data = json.dumps(data_update)
         except json.JSONDecodeError:

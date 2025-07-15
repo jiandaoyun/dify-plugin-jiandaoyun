@@ -10,13 +10,13 @@ from utils.httpclient import APIRequestTool
 
 class WidgetTool(Tool):
 
-    def getWidget(self, data: dict[str, Any]) -> dict[str, Any]:
+    def getWidget(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
 
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/widget/list", data=data)["data"]
 
 
@@ -27,7 +27,7 @@ class WidgetTool(Tool):
         entry_id = tool_parameters.get("entry_id", "")
         if not entry_id:
             raise ValueError("entry_id 不能为空")
-        widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id})
+        widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id},tool_parameters.get("base_url"))
         try:
             dumped_data = json.dumps(widget_data)
         except json.JSONDecodeError:

@@ -16,12 +16,12 @@ class DatagetTool(Tool):
       "data_id": ""
     }
     '''
-    def get_data(self, data: dict[str, Any]) -> dict[str, Any]:
+    def get_data(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/get", data=data)["data"]
 
 
@@ -41,7 +41,7 @@ class DatagetTool(Tool):
             "app_id": app_id,
             "entry_id": entry_id,
             "data_id": data_id
-        })
+        },tool_parameters.get("base_url"))
 
         # yield self.create_json_message(data)
         yield self.create_text_message(str(data))

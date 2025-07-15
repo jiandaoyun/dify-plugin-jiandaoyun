@@ -11,19 +11,19 @@ from utils.httpclient import APIRequestTool
 class AppTool(Tool):
 
 
-    def get_app_list(self,data:Dict[str,Any])->Dict[str, Any]:
+    def get_app_list(self,data:Dict[str,Any],base_url:str)->Dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/list",data=data)["data"]
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         limit = tool_parameters.get("limit", 10)
         offset = tool_parameters.get("offset", 0)
 
-        response = self.get_app_list({"limit": limit, "skip": offset})
+        response = self.get_app_list({"limit": limit, "skip": offset},tool_parameters.get("base_url"))
         json_data = {
             "status": "success",
             "data": response,

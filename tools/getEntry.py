@@ -18,12 +18,12 @@ class GetEntryTool(Tool):
         "offset": 0    # 可选，默认0
     }
     '''
-    def getEntryList(self, data: dict[str, Any]) -> dict[str, Any]:
+    def getEntryList(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("/v5/app/entry/list", data=data)["data"]
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
@@ -38,7 +38,7 @@ class GetEntryTool(Tool):
             "app_id": app_id,
             "limit": limit,
             "offset": offset
-        })
+        },tool_parameters.get("base_url"))
         try:
             dumped_data = json.dumps(response)
         except json.JSONDecodeError:

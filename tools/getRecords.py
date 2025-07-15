@@ -10,12 +10,12 @@ from utils.httpclient import APIRequestTool
 
 class DatagetlistTool(Tool):
 
-    def getDataList(self, data: dict[str, Any]) -> dict[str, Any]:
+    def getDataList(self, data: dict[str, Any],base_url) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/list", data=data)["data"]
 
 
@@ -35,7 +35,7 @@ class DatagetlistTool(Tool):
             # array形式的字段列表，若不传则返回全部字段,
             "filter": tool_parameters.get("filter", "{}"),  # 字段过滤条件，json格式
             "limit": tool_parameters.get("limit", 10),  # 默认100条
-        })
+        },tool_parameters.get("base_url"))
         json_data = {
             "status": "success",
             "data": data,

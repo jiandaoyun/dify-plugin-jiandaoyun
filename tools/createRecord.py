@@ -17,12 +17,12 @@ class CreateRecordTool(Tool):
       "data_id": ""
     }
     '''
-    def create_data(self, data: dict[str, Any]) -> dict[str, Any]:
+    def create_data(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api", token=access_token)
+        httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/create", data=data)["data"]
 
 
@@ -39,7 +39,7 @@ class CreateRecordTool(Tool):
             loaded_data = json.loads(data)
         except json.JSONDecodeError:
             raise ValueError("data 参数必须是有效的 JSON 字符串")
-        data = self.create_data({"app_id": app_id, "entry_id": entry_id, "data":loaded_data })
+        data = self.create_data({"app_id": app_id, "entry_id": entry_id, "data":loaded_data },tool_parameters.get("base_url"))
         json_data = {
             "status": "success",
             "data": data,

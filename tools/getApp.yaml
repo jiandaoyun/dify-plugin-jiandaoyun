@@ -1,0 +1,45 @@
+identity:
+  name: "app"
+  author: "hectum_shen"
+  label:
+    en_US: "app management"
+    zh_Hans: "查询所有应用"
+    pt_BR: "jiandaoyun"
+description:
+  human:
+    en_US: "list all your jiandaoyun applications,according to the api-key permissions"
+    zh_Hans: "管理简道云应用，按照api-key的权限返回所有用户应用及其appid"
+    pt_BR: "most popular actions of jiandaoyun"
+  llm: "list all the applications,according to authorization permissions"
+parameters:
+  - name: limit
+    type: number
+    required: false
+    default: 10
+    label:
+      en_US: Limit
+      zh_Hans: 限制数量
+      pt_BR: Limit
+    human_description:
+      en_US: "limit of the applications to be listed"
+      zh_Hans: "限制查询的应用数量"
+      pt_BR: "limite de aplicativos a serem listados"
+    llm_description: "the limit of the applications to be listed, default is 10"
+    form: llm
+  - name: offset
+    type: number
+    required: false
+    default: 0
+    label:
+      en_US: Offset
+      zh_Hans: 偏移量
+      pt_BR: Offset
+    human_description:
+      en_US: "offset of the applications you want to query"
+      zh_Hans: "偏移量"
+      pt_BR: "offset dos aplicativos que você deseja consultar"
+    llm_description: "offset of the applications you want to query,default is 0"
+    form: llm
+extra:
+  python:
+    source: tools/getApp.py

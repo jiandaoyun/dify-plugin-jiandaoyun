@@ -4,13 +4,13 @@ identity:
   label:
     en_US: "entry list get"
     zh_Hans: "查询全部表单"
-    pt_BR: "jiandaoyun"
+    pt_BR: "entry list get"
 description:
   human:
     en_US: "list all your jiandaoyun entries in an application,according to the api-key permissions"
     zh_Hans: "管理简道表单，按照api-key的权限返回所有表单及其entry_id"
     pt_BR: "most popular actions of jiandaoyun"
-  llm: "list all your jiandaoyun entries in an application(by app_id),according to the api-key permissions"
+  llm: "list all your jiandaoyun entries in an application(by app_id),this method will return all entries in the application,if you need entry_id, please use this method"
 parameters:
   - name: app_id
     type: string
@@ -50,7 +50,7 @@ parameters:
     human_description:
       en_US: "offset of the entries you want to query"
       zh_Hans: "偏移量"
-      pt_BR: "most popular actions of jiandaoyun"
+      pt_BR: "offset dos aplicativos que você deseja consultar"
     llm_description: "offset of the entries you want to query"
     form: llm
 extra:

@@ -10,7 +10,7 @@ description:
     en_US: "get specific data from an entry in a jiandaoyun application,according to the api-key permissions"
     zh_Hans: "管理简道云应用，按照api-key的权限返回用户检索的应用的表单中的一条或者多条数据（可以进行条件约束）"
     pt_BR: "dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "get specific data from an entry in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+  llm: "get specific data from an entry in a jiandaoyun application(by app_id and entry_id),please use this method less frequently,because it's mainly for frontend rendering by searching by data_id,if you want to search for records you don't know, use the getRecords method to search for a few records at a time"
 parameters:
   - name: app_id
     type: string
@@ -53,4 +53,4 @@ parameters:
     form: llm
 extra:
   python:
-    source: tools/dataget.py
+    source: tools/getRecord.py

@@ -22,7 +22,7 @@ parameters:
     human_description:
       en_US: "app_id of the application you want to query"
       zh_Hans: "应用的app_id"
-      pt_BR: "most popular actions of jiandaoyun"
+      pt_BR: "app_id do aplicativo que você deseja consultar"
     llm_description: "app_id of the application you want to query"
     form: llm
   - name: entry_id
@@ -49,21 +49,8 @@ parameters:
       en_US: "data_id of the data you want to update"
       zh_Hans: "数据的data_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "data_id of the data you want to update"
-    form: llm
-  - name: data
-    type: string
-    required: true
-    label:
-      en_US: data
-      zh_Hans: 具体数据
-      pt_BR: data
-    human_description:
-      en_US: "the actual data you want to create, in JSON format"
-      zh_Hans: "你想要更新的实际数据，JSON格式"
-      pt_BR: "os dados reais que você deseja criar, no formato JSON"
-    llm_description: "the actual data you want to update, in JSON format string"
+    llm_description: "data_id of the data you want to update,if you don't have the data_id, you can use the getRecords method to get all data_ids and check for the one you want to delete"
     form: llm
 extra:
   python:
-    source: tools/dataupdate.py
+    source: tools/updateRecord.py

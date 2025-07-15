@@ -7,18 +7,18 @@ identity:
     pt_BR: "jiandaoyun"
   description:
     en_US: "most popular actions of jiandaoyun"
-    zh_Hans: "简道云平台"
+    zh_Hans: "简道云平台dify支撑插件"
     pt_BR: "most popular actions of jiandaoyun"
   icon: "jdy_icon.svg"
 tools:
-  - tools/app.yaml
+  - tools/getApp.yaml
   - tools/getEntry.yaml
-  - tools/dataget.yaml
-  - tools/widget.yaml
+  - tools/getRecord.yaml
+  - tools/getWidgets.yaml
   - tools/createRecord.yaml
-  - tools/datalist.yaml
-  - tools/datacreatelist.yaml
-  - tools/dataupdate.yaml
+  - tools/getRecords.yaml
+  - tools/createRecords.yaml
+  - tools/updateRecord.yaml
 extra:
   python:
     source: provider/jiandaoyun.py

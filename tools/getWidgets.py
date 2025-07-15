@@ -1,3 +1,4 @@
+import json
 from collections.abc import Generator
 from typing import Any
 
@@ -20,10 +21,21 @@ class WidgetTool(Tool):
 
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        data = self.getWidget(tool_parameters)
-        yield self.create_json_message({
+        app_id = tool_parameters.get("app_id", "")
+        if not app_id:
+            raise ValueError("app_id 不能为空")
+        entry_id = tool_parameters.get("entry_id", "")
+        if not entry_id:
+            raise ValueError("entry_id 不能为空")
+        widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id})
+        try:
+            dumped_data = json.dumps(widget_data)
+        except json.JSONDecodeError:
+            raise ValueError("返回的数据不是有效的 JSON 格式")
+        data = {
             "status": "success",
-            "data": data,
+            "data": widget_data,
             "message": "获取字段列表成功"
-        })
-        yield self.create_text_message(str(data))
+        }
+        yield self.create_json_message(data)
+        yield self.create_text_message(str(dumped_data))

@@ -1,16 +1,18 @@
 identity:
-  name: "data_create_list"
+  name: "create_records"
   author: "hectum_shen"
   label:
-    en_US: "data list create"
+    en_US: "create a few records"
     zh_Hans: "新建多条数据"
-    pt_BR: "jiandaoyun"
+    pt_BR: "criar novos dados"
 description:
   human:
     en_US: "create new data in a jiandaoyun application,according to the api-key permissions"
     zh_Hans: "在简道云应用中创建多条新数据"
     pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "create many new data in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+  llm: "create a new record in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions\
+  the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content}
+  you need to replace the id with actual string,fill in the data field with the actual data you want to create, in JSON format string}"
 parameters:
   - name: app_id
     type: string
@@ -22,7 +24,7 @@ parameters:
     human_description:
       en_US: "app_id of the application you want to query"
       zh_Hans: "应用的app_id"
-      pt_BR: "most popular actions of jiandaoyun"
+      pt_BR: "app_id do aplicativo que você deseja consultar"
     llm_description: "app_id of the application you want to query"
     form: llm
   - name: entry_id
@@ -49,8 +51,24 @@ parameters:
       en_US: "the actual data you want to create, in JSON format"
       zh_Hans: "你想要创建的实际数据，JSON格式数据组成的数组"
       pt_BR: "os dados reais que você deseja criar, no formato JSON"
-    llm_description: "data_id of the data you want to query"
+    llm_description: "the list of the records you want to insert , every record is in the format of JSON, example:\
+    \"data_list\": [\n      {
+        \"_widget_1432728651402\": { // 单行文本
+          \"value\": \"简道云1\"
+        },
+        \"_widget_1432728651403\": { // 数字
+          \"value\": 100
+        }
+      },
+      {
+        \"_widget_1432728651402\": {
+          \"value\": \"简道云2\"
+        },
+        \"_widget_1432728651403\": {
+          \"value\": 200
+        },
+      } make sure the fields name match, if you don't know the exact widget id, you can use the get_widget tool to get all the widget ids in the entry, and then use the ids in the data_list, "
     form: llm
 extra:
   python:
-    source: tools/datacreatelist.py
+    source: tools/createRecords.py

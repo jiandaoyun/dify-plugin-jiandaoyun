@@ -12,7 +12,8 @@ class APIRequestTool:
             base_url (str): API 的基础 URL，例如 "https://api.example.com/"
             token (str): 用户的认证 token
         """
-        self.base_url = "https://api.jiandaoyun.com/api/" if not base_url.endswith("/") else base_url
+        if not base_url:
+            self.base_url = "https://api.jiandaoyun.com/api/"
         self.headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
@@ -106,26 +107,3 @@ class APIRequestTool:
     def delete(self, endpoint: str) -> Dict[str, Any]:
         """封装 DELETE 请求，用于删除资源"""
         return self.make_request("DELETE", endpoint)
-
-
-# 示例使用（仅用于测试，实际部署时移除）
-if __name__ == "__main__":
-    # 初始化工具
-
-    tool = APIRequestTool(base_url="https://api.jiandaoyun.com/api/",token="3HRgCmclbhx3uo0FMJy2fualXL3udG23")
-
-    # 示例：创建资源
-    # create_response = tool.create("create", {"title": "新任务", "description": "描述"})
-    # print("Create:", create_response)
-
-    # 示例：查询资源
-    read_response = tool.create("v5/app/list",data={})
-    print("Read:", read_response['data'])
-
-    # # 示例：更新资源
-    # update_response = tool.update("update/123", {"title": "更新任务"})
-    # print("Update:", update_response)
-    #
-    # # 示例：删除资源
-    # delete_response = tool.delete("delete/123")
-    # print("Delete:", delete_response)

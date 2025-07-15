@@ -1,3 +1,4 @@
+import json
 from collections.abc import Generator
 from typing import Any
 
@@ -27,19 +28,25 @@ class GetEntryTool(Tool):
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         # get app_id from tool_parameters
-        app_id = tool_parameters["app_id"]
+        app_id = tool_parameters.get("app_id")
+        if not app_id:
+            raise ValueError("app_id 不能为空")
         # try to get limit and offset from tool_parameters, if not provided, use default values
         limit = tool_parameters.get("limit", 100)
         offset = tool_parameters.get("offset", 0)
-        data = {
+        response = self.getEntryList({
             "app_id": app_id,
             "limit": limit,
             "offset": offset
-        }
-        response = self.getEntryList(data)
+        })
+        try:
+            dumped_data = json.dumps(response)
+        except json.JSONDecodeError:
+            raise ValueError("返回的数据不是有效的 JSON 格式")
         json_data = {
             "status": "success",
             "data": response,
             "message": "获取表单列表成功"
         }
         yield self.create_json_message(json_data)
+        yield self.create_text_message(str(dumped_data))

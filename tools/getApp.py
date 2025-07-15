@@ -19,8 +19,10 @@ class AppTool(Tool):
         return httpClient.create("v5/app/list",data=data)["data"]
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        data = {"limit": tool_parameters.get("limit", 20)}
-        response = self.get_app_list(data=data)
+        limit = tool_parameters.get("limit", 10)
+        offset = tool_parameters.get("offset", 0)
+
+        response = self.get_app_list({"limit": limit, "skip": offset})
         json_data = {
             "status": "success",
             "data": response,

@@ -62,8 +62,22 @@ parameters:
       en_US: "the actual data you want to create, in JSON format"
       zh_Hans: "你想要更新的实际数据，JSON格式"
       pt_BR: "os dados reais que você deseja criar, no formato JSON"
-    llm_description: "the actual data you want to update, in JSON format string"
+    llm_description: "the actual data you want to update, in JSON format string,examples:
+    {\"
+        \"_widget_1432728651402\": { // 单行文本
+            \"value\": \"简道云\"
+        },
+        \"_widget_1725969783950\": {
+            \"value\": \"67221b4fac0a62ac8f43a1c3\"//关联数据
+        },
+        \"_widget_1432728651403\": { // 数字
+            \"value\": 100
+        },
+        \"_widget_1432728651404\": { // 多行文本
+            \"value\": \"简道云是一个强大易用的应用搭建工具，\n可以快速把你的想法变成应用\"
+        }
+    }"
     form: llm
 extra:
   python:
-    source: tools/dataupdate.py
+    source: tools/updateRecord.py

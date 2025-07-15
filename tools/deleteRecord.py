@@ -20,13 +20,23 @@ class DataupdateTool(Tool):
 
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        data = tool_parameters.get("data", None)
-        if data is None:
-            raise ValueError("请求参数 'data' 不能为空")
-        data_update = self.updateData(tool_parameters)
+        app_id = tool_parameters.get("app_id", "")
+        if not app_id:
+            raise ValueError("app_id 不能为空")
+        entry_id = tool_parameters.get("entry_id", None)
+        if not entry_id:
+            raise ValueError("entry_id 不能为空")
+        data_id = tool_parameters.get("data_id", None)
+        if not data_id:
+            raise ValueError("data_id 不能为空")
+        data_update = self.updateData({"app_id": app_id, "entry_id":entry_id,"data_id": data_id})
+        try:
+            data = json.dumps(data_update)
+        except json.JSONDecodeError:
+            raise ValueError("返回的数据不是有效的 JSON 格式")
         json_data = {
             "status": "success",
-            "data": json.dumps(data_update),
+            "data": data,
             "message": "获取数据列表成功"
         }
 

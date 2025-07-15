@@ -4,13 +4,15 @@ identity:
   label:
     en_US: "record create"
     zh_Hans: "新建单条数据"
-    pt_BR: "jiandaoyun"
+    pt_BR: "registro de criação"
 description:
   human:
-    en_US: "create new create in a jiandaoyun application,according to the api-key permissions"
+    en_US: "create a new record in a jiandaoyun application,according to the api-key permissions"
     zh_Hans: "在简道云应用中创建新数据"
     pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "create new create in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions"
+  llm: "create a new record in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions\
+  the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content}
+  you need to replace the id with actual string,fill in the data field with the actual data you want to create, in JSON format string}"
 parameters:
   - name: app_id
     type: string
@@ -22,7 +24,7 @@ parameters:
     human_description:
       en_US: "app_id of the application you want to query"
       zh_Hans: "应用的app_id"
-      pt_BR: "most popular actions of jiandaoyun"
+      pt_BR: "app_id do aplicativo que você deseja consultar"
     llm_description: "app_id of the application you want to query"
     form: llm
   - name: entry_id
@@ -35,7 +37,7 @@ parameters:
     human_description:
       en_US: "entry_id is the id of the worksheet you want to query"
       zh_Hans: "应用的entry_id"
-      pt_BR: "most popular actions of jiandaoyun"
+      pt_BR: "entry_id é o id da planilha que você deseja consultar"
     llm_description: "entry_id is the id of the worksheet you want to query"
     form: llm
   - name: data
@@ -49,7 +51,28 @@ parameters:
       en_US: "the actual data you want to create, in JSON format"
       zh_Hans: "你想要创建的实际数据，JSON格式"
       pt_BR: "os dados reais que você deseja criar, no formato JSON"
-    llm_description: "the actual data you want to create, in JSON format string"
+    llm_description: "the actual data you want to create, in JSON format string,the actual format is like this:
+    {
+        \"_widget_1432728651402\": { // 单行文本
+            \"value\": \"简道云\"
+        },
+          \"_widget_1725969783950\": {
+      		\"value\": \"67221b4fac0a62ac8f43a1c3\"//关联数据
+    	},
+        \"_widget_1432728651403\": { // 数字
+            \"value\": 100
+        },
+        \"_widget_1432728651404\": { // 多行文本
+            \"value\": \"简道云是一个强大易用的应用搭建工具，\n可以快速把你的想法变成应用\"
+        },
+        \"_widget_1432728651405\": { // 单选按钮组、下拉框
+            \"value\": \"选项一\"
+        },
+        \"_widget_1432728651406\": { // 复选框组、下拉复选框
+            \"value\": [
+                \"选项一\",\"选项二\",\"选项三\"
+            ]
+        },"
     form: llm
 extra:
   python:

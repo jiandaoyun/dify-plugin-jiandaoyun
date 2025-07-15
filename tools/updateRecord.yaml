@@ -1,16 +1,16 @@
 identity:
-  name: "data_update"
+  name: "update_record"
   author: "hectum_shen"
   label:
-    en_US: "dataupdate"
+    en_US: "update_record"
     zh_Hans: "更新单条数据"
     pt_BR: "jiandaoyun"
 description:
   human:
-    en_US: "update a specific data according to app_id,entry_id and data_id"
+    en_US: "update a specific record according to app_id,entry_id and data_id"
     zh_Hans: "更新特定某一条数据"
     pt_BR: "atualizar dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "update a specific data in a jiandaoyun application(by app_id,entry_id and data_id),data is in JSON format string"
+  llm: "update a specific record in a jiandaoyun application(by app_id,entry_id and data_id),data is in JSON format string"
 parameters:
   - name: app_id
     type: string

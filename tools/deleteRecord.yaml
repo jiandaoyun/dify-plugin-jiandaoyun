@@ -1,8 +1,8 @@
 identity:
-  name: "data_delete"
+  name: "delete_record"
   author: "hectum_shen"
   label:
-    en_US: "data delete"
+    en_US: "delete_record"
     zh_Hans: "删除单条数据"
     pt_BR: "jiandaoyun"
 description:
@@ -53,4 +53,4 @@ parameters:
     form: llm
 extra:
   python:
-    source: tools/updateRecord.py
+    source: tools/deleteRecord.py

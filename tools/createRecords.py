@@ -36,12 +36,12 @@ class DatacreateTool(Tool):
             raise ValueError("entry_id 不能为空")
         data_list = tool_parameters['data_list']# string形式的json，因此处理时候需要解析
 
-        data = self.create_data({"app_id": app_id, "entry_id": entry_id, "data_list": json.loads(data_list)})
+        data = self.create_data({"app_id": app_id, "entry_id": entry_id, "data_list": data_list})
         json_data = {
             "status": "success",
             "data": data,
             "message": "创建数据成功"
         }
-        yield self.create_json_message(json_data)
+        # yield self.create_json_message(json_data)
         yield self.create_text_message(str(data))
 

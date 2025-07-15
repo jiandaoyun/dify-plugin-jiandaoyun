@@ -19,6 +19,7 @@ tools:
   - tools/getRecords.yaml
   - tools/createRecords.yaml
   - tools/updateRecord.yaml
+  - tools/deleteRecord.yaml
 extra:
   python:
     source: provider/jiandaoyun.py

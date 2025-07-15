@@ -1,5 +1,5 @@
 identity:
-  name: "data"
+  name: "record_query"
   author: "hectum_shen"
   label:
     en_US: "data get"

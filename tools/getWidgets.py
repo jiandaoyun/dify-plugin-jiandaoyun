@@ -37,5 +37,5 @@ class WidgetTool(Tool):
             "data": widget_data,
             "message": "获取字段列表成功"
         }
-        yield self.create_json_message(data)
+        # yield self.create_json_message(data)
         yield self.create_text_message(str(dumped_data))

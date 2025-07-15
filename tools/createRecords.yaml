@@ -11,7 +11,7 @@ description:
     zh_Hans: "在简道云应用中创建多条新数据"
     pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
   llm: "create a new record in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions\
-  the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content}
+  the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content} }
   you need to replace the id with actual string,fill in the data field with the actual data you want to create, in JSON format string}"
 parameters:
   - name: app_id

@@ -1,9 +1,10 @@
+from test.getenv import get_apikey
 from utils.httpclient import APIRequestTool
 
 # Test for widget tool in Jiandaoyun API
 def test_widget():
     httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/",
-                                token="llEzOmcttxo0fV933OalgYtsibgizvEV")
+                                token=get_apikey())
     # data = httpClient.create("v5/app/entry/widget/list", data={
     #     "app_id": "686c7bf22c8e537d9bbc61ff",
     #     "entry_id": "686c7bf64f481d0f0cb1bd8c"

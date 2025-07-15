@@ -1,5 +1,5 @@
 identity:
-  name: "app"
+  name: "get_apps"
   author: "hectum_shen"
   label:
     en_US: "app management"

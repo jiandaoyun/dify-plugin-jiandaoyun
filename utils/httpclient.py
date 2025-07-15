@@ -14,6 +14,8 @@ class APIRequestTool:
         """
         if not base_url:
             self.base_url = "https://api.jiandaoyun.com/api/"
+        else:
+            self.base_url = base_url.rstrip("/") + "/"
         self.headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"

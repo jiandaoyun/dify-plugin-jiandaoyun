@@ -30,5 +30,5 @@ class DataupdateTool(Tool):
             "message": "获取数据列表成功"
         }
 
-        yield self.create_json_message(json_data)
+        # yield self.create_json_message(json_data)
         yield self.create_text_message(str(data))

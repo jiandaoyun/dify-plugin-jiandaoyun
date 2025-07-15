@@ -23,7 +23,7 @@ class GetEntryTool(Tool):
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
-        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api", token=access_token)
+        httpClient = APIRequestTool(base_url="https://api.jiandaoyun.com/api/", token=access_token)
         return httpClient.create("/v5/app/entry/list", data=data)["data"]
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
@@ -48,5 +48,5 @@ class GetEntryTool(Tool):
             "data": response,
             "message": "获取表单列表成功"
         }
-        yield self.create_json_message(json_data)
+        # yield self.create_json_message(json_data)
         yield self.create_text_message(str(dumped_data))

@@ -6,6 +6,7 @@ from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 
 from utils.httpclient import APIRequestTool
+from utils.json2table import json2table
 
 
 class DatagetlistTool(Tool):
@@ -26,7 +27,7 @@ class DatagetlistTool(Tool):
         entry_id = tool_parameters.get("entry_id", "")
         if not entry_id:
             raise ValueError("entry_id 不能为空")
-
+        output_type = tool_parameters.get("output_type", "json")
         data = self.getDataList({
             "app_id": app_id,
             "entry_id": entry_id,
@@ -41,6 +42,12 @@ class DatagetlistTool(Tool):
             "data": data,
             "message": "获取数据列表成功"
         }
-
-        # yield self.create_json_message(json_data)
-        yield self.create_text_message(str(data))
+        try:
+            json_str = json.dumps(json_data)
+        except json.JSONDecodeError:
+            raise ValueError("返回的数据不是有效的 JSON 格式")
+        if output_type == "table":
+            output_data = json2table(data["data"])
+            yield self.create_text_message(output_data)
+        elif output_type == "json":
+            yield self.create_text_message(json_str)

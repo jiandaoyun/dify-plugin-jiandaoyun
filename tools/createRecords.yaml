@@ -82,7 +82,7 @@ parameters:
       zh_Hans: "简道云服务器的地址，如果不指定，默认为https://api.jiandaoyun.com"
       pt_BR: "a URL base do servidor jiandaoyun, se não especificado, padrão para https://api.jiandaoyun.com"
     llm_description: "the base url of the jiandaoyun server,if not specified,default to https://api.jiandaoyun.com"
-    form: llm
+    form: form
 extra:
   python:
     source: tools/createRecords.py

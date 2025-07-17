@@ -41,4 +41,4 @@ class DataupdateTool(Tool):
         }
 
         # yield self.create_json_message(json_data)
-        yield self.create_text_message(str(data))
+        yield self.create_text_message(json.dumps(json_data))

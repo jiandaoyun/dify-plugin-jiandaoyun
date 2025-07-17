@@ -6,6 +6,7 @@ from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 
 from utils.httpclient import APIRequestTool
+from utils.json2table import json2table
 
 
 class WidgetTool(Tool):
@@ -27,6 +28,7 @@ class WidgetTool(Tool):
         entry_id = tool_parameters.get("entry_id", "")
         if not entry_id:
             raise ValueError("entry_id 不能为空")
+        output_type = tool_parameters.get("output_type", "json")
         widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id},tool_parameters.get("base_url"))
         try:
             dumped_data = json.dumps(widget_data)
@@ -38,4 +40,8 @@ class WidgetTool(Tool):
             "message": "获取字段列表成功"
         }
         # yield self.create_json_message(data)
-        yield self.create_text_message(str(dumped_data))
+        if output_type == "json":
+            yield self.create_text_message(str(dumped_data))
+        elif output_type == "table":
+            output_data = json2table(widget_data["widgets"])
+            yield self.create_text_message(output_data)

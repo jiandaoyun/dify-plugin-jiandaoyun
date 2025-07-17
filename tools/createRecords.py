@@ -43,5 +43,5 @@ class DatacreateTool(Tool):
             "message": "创建数据成功"
         }
         # yield self.create_json_message(json_data)
-        yield self.create_text_message(str(data))
+        yield self.create_text_message(str(json_data))
 

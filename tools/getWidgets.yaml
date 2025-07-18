@@ -16,8 +16,8 @@ parameters:
     type: string
     required: true
     label:
-      en_US: the app_id of the application you want to query
-      zh_Hans:
+      en_US: app_id
+      zh_Hans: 应用id
       pt_BR: Query string
     human_description:
       en_US: "app_id of the application you want to query"

@@ -42,7 +42,7 @@ class APIRequestTool:
         """
         # 拼接完整 URL
         url = urljoin(self.base_url, endpoint.lstrip("/"))
-        print("request url:", url)
+        # print("request url:", url)
         try:
             # 发起请求
             response = requests.request(
@@ -62,7 +62,7 @@ class APIRequestTool:
                 response_data = response.json()
             except ValueError:
                 response_data = {"raw_response": response.text}
-            print("response_data:", response_data)
+            # print("response_data:", response_data)
             return {
                 "status": "success",
                 "data": response_data,

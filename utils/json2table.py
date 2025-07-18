@@ -1,33 +1,37 @@
 
-
-
 def json2table(json_data: list) -> str:
     """
-    Convert JSON data to a table format.
+    Convert JSON data to a Markdown table.
 
     Args:
         json_data (list): List of dictionaries representing JSON data.
 
     Returns:
-        str: A string representation of the table.
+        str: A string representation of the Markdown table.
     """
     if not json_data:
         return "No data available"
 
+    # 获取所有字段名作为表头
     headers = json_data[0].keys()
-    table = [headers]
 
+    # 构建表格行
+    rows = []
     for item in json_data:
         row = [str(item.get(header, "")) for header in headers]
-        table.append(row)
+        rows.append(row)
 
-    # Calculate column widths
-    col_widths = [max(len(str(item)) for item in col) for col in zip(*table)]
+    # 构建 Markdown 表格
+    markdown_table = []
 
-    # Create formatted table
-    formatted_table = []
-    for row in table:
-        formatted_row = " | ".join(f"{str(item).ljust(col_widths[i])}" for i, item in enumerate(row))
-        formatted_table.append(formatted_row)
+    # 添加表头
+    markdown_table.append(" | ".join(headers))
 
-    return "\n".join(formatted_table)
+    # 添加分隔线
+    markdown_table.append(" | ".join(["---"] * len(headers)))
+
+    # 添加数据行
+    for row in rows:
+        markdown_table.append(" | ".join(row))
+
+    return "\n".join(markdown_table)

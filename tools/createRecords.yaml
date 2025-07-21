@@ -10,7 +10,7 @@ description:
     en_US: "create new data in a jiandaoyun application,according to the api-key permissions"
     zh_Hans: "在简道云应用中创建多条新数据"
     pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "create a new record in a jiandaoyun application(by app_id and entry_id),according to the api-key permissions\
+  llm: "create a new record in a jiandaoyun entry(by app_id and entry_id),according to the api-key permissions\
   the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content} }
   you need to replace the id with actual string,fill in the data field with the actual data you want to create, in JSON format string}
     only use this method to create new records NEVER USE IT TO UPDATE OR DELETE RECORDS"
@@ -82,7 +82,7 @@ parameters:
       zh_Hans: "简道云服务器的地址，如果不指定，默认为https://api.jiandaoyun.com"
       pt_BR: "a URL base do servidor jiandaoyun, se não especificado, padrão para https://api.jiandaoyun.com"
     llm_description: "the base url of the jiandaoyun server,if not specified,default to https://api.jiandaoyun.com"
-    form: llm
+    form: form
 extra:
   python:
     source: tools/createRecords.py

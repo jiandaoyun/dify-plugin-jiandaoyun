@@ -40,9 +40,12 @@ class DataupdateTool(Tool):
         },tool_parameters.get("base_url"))
         json_data = {
             "status": "success",
-            "data": json.dumps(data_update),
+            "data": data_update,
             "message": "获取数据列表成功"
         }
-
+        try:
+            output_data = json.dumps(json_data)
+        except json.JSONDecodeError:
+            raise ValueError("返回的数据不是有效的 JSON 格式")
         # yield self.create_json_message(json_data)
-        yield self.create_text_message(str(data))
+        yield self.create_text_message(output_data)

@@ -1,6 +1,6 @@
 ## jiandaoyun
 
-**Author:** hectum_shen
+**Author:** jiandaoyun
 **Version:** 0.0.1
 **Type:** tool
 

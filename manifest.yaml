@@ -12,7 +12,7 @@ description:
   ja_JP: most popular actions of jiandaoyun
   zh_Hans: 使用简道云dify，融合AI，创造更智能的工作方式
   pt_BR: most popular actions of jiandaoyun
-icon: jdy_icon.svg
+icon: icon.svg
 resource:
   memory: 268435456
   permission: {}

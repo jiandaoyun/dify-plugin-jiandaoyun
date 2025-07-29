@@ -1,6 +1,6 @@
 version: 0.0.1
 type: plugin
-author: hectum_shen
+author: "hectum_shen"
 name: jiandaoyun
 label:
   en_US: jiandaoyun

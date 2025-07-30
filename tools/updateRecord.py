@@ -37,7 +37,7 @@ class DataupdateTool(Tool):
             "entry_id": entry_id,
             "data_id": data_id,
             "data": data
-        },tool_parameters.get("base_url"))
+        },tool_parameters.get("base_url","https://api.jiandaoyun.com/"))
         json_data = {
             "status": "success",
             "data": data_update,

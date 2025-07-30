@@ -2,18 +2,18 @@ identity:
   name: "create_records"
   author: "hectum_shen"
   label:
-    en_US: "create a few records"
-    zh_Hans: "新建多条数据"
+    en_US: "create some new records in a row"
+    zh_Hans: "新建多条新记录"
     pt_BR: "criar novos dados"
 description:
   human:
-    en_US: "create new data in a jiandaoyun application,according to the api-key permissions"
-    zh_Hans: "在简道云应用中创建多条新数据"
+    en_US: "create new records in a jiandaoyun entry,according to the api-key permissions"
+    zh_Hans: "在简道云应用中创建多条新记录"
     pt_BR: "criar novos dados em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
   llm: "create a new record in a jiandaoyun entry(by app_id and entry_id),according to the api-key permissions\
   the input format is like this:{ \n \"app_id\": \"59264073a2a60c0c08e20bfb\",\n \"entry_id\": \"59264073a2a60c0c08e20bfd\",\n    \"data\":{//actual content} }
   you need to replace the id with actual string,fill in the data field with the actual data you want to create, in JSON format string}
-    only use this method to create new records NEVER USE IT TO UPDATE OR DELETE RECORDS"
+    only use this method to create new records, NEVER USE IT TO UPDATE OR DELETE RECORDS. returns the creation details."
 parameters:
   - name: app_id
     type: string
@@ -26,7 +26,7 @@ parameters:
       en_US: "app_id of the application you want to query"
       zh_Hans: "应用的app_id"
       pt_BR: "app_id do aplicativo que você deseja consultar"
-    llm_description: "app_id of the application you want to query"
+    llm_description: "app_id of the application you want to query.This field is mandatary."
     form: llm
   - name: entry_id
     type: string
@@ -39,7 +39,7 @@ parameters:
       en_US: "entry_id of the application you want to query"
       zh_Hans: "应用的entry_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "entry_id of the application you want to query"
+    llm_description: "entry_id of the application you want to query. This field is mandatary."
     form: llm
   - name: data_list
     type: string

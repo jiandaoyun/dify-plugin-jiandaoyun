@@ -2,15 +2,15 @@ identity:
   name: "record_query"
   author: "hectum_shen"
   label:
-    en_US: "data get"
-    zh_Hans: "查询单条数据"
+    en_US: "record get"
+    zh_Hans: "查询单条记录"
     pt_BR: "jiandaoyun"
 description:
   human:
     en_US: "get specific data from an entry in a jiandaoyun application,according to the api-key permissions"
-    zh_Hans: "管理简道云应用，按照api-key的权限返回用户检索的应用的表单中的一条或者多条数据（可以进行条件约束）"
+    zh_Hans: "管理简道云应用，按照api-key的权限返回用户检索的应用的表单中的一条记录（可以进行条件约束）"
     pt_BR: "dados específicos de uma entrada em um aplicativo jiandaoyun, de acordo com as permissões da chave API"
-  llm: "get specific data from an entry in a jiandaoyun application(by app_id and entry_id),please use this method less frequently,because it's mainly for frontend rendering by searching by data_id,if you want to search for records you don't know, use the getRecords method to search for a few records at a time"
+  llm: "get a specific record from an entry in a jiandaoyun application(by app_id and entry_id),please use this method less frequently,because it's mainly for frontend rendering by searching by data_id,if you want to search for records you don't know, use the getRecords method to search for a few records at a time.Return the record of your query dataid,if the record is not found, it will return an error."
 parameters:
   - name: app_id
     type: string
@@ -20,10 +20,10 @@ parameters:
       zh_Hans: app_id
       pt_BR: app_id
     human_description:
-      en_US: "app_id of the application you want to query"
+      en_US: "id of the application you want to query"
       zh_Hans: "应用的app_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "app_id of the application you want to query"
+    llm_description: "id of the application you want to query. This field is mandatary."
     form: llm
   - name: entry_id
     type: string
@@ -33,10 +33,10 @@ parameters:
       zh_Hans: entry_id
       pt_BR: entry_id
     human_description:
-      en_US: "entry_id of the application you want to query"
+      en_US: "id of the entry you want to query"
       zh_Hans: "应用的entry_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "entry_id of the application you want to query"
+    llm_description: "id of the entry you want to query. This field is mandatary."
     form: llm
   - name: data_id
     type: string
@@ -49,7 +49,7 @@ parameters:
       en_US: "data_id of the data you want to query"
       zh_Hans: "数据的data_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "data_id of the data you want to query"
+    llm_description: "data_id of the data you want to query. This field is mandatary."
     form: llm
   - name: base_url
     type: secret-input

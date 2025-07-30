@@ -21,10 +21,10 @@ parameters:
       zh_Hans: app_id
       pt_BR: app_id
     human_description:
-      en_US: "app_id of the application you want to query"
+      en_US: "id of the application you want to query"
       zh_Hans: "应用的app_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "app_id of the application you want to query"
+    llm_description: "id of the application you want to query. This field is mandatary."
     form: llm
   - name: entry_id
     type: string
@@ -34,10 +34,10 @@ parameters:
       zh_Hans: entry_id
       pt_BR: entry_id
     human_description:
-      en_US: "entry_id of the application you want to query"
+      en_US: "id of the entry you want to query"
       zh_Hans: "应用的entry_id"
       pt_BR: "most popular actions of jiandaoyun"
-    llm_description: "entry_id of the application you want to query"
+    llm_description: "id of the entry you want to query. This field is mandatary."
     form: llm
   - name: data_id
     type: string # array of strings

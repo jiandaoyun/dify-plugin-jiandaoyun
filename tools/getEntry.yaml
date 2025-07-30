@@ -23,7 +23,7 @@ parameters:
       en_US: "app_id of the application you want to query"
       zh_Hans: "应用的app_id"
       pt_BR: "app_id da aplicação que você deseja consultar"
-    llm_description: "app_id of the application you want to query"
+    llm_description: "app_id of the application you want to query. This field is mandatary."
     form: llm
   - name: limit
     type: number
@@ -77,7 +77,7 @@ parameters:
       en_US: "the output type of the result,default is json"
       zh_Hans: "结果的输出类型，默认为json"
       pt_BR: "o tipo de saída do resultado, padrão é json"
-    llm_description: "the output type of the result,default is json text"
+    llm_description: "the output type of the result is json text by default, This field is mandatary."
     options:
       - value: json
         label:

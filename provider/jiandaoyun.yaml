@@ -1,5 +1,5 @@
 identity:
-  author: "hectum_shen"
+  author: jiandaoyun
   name: "jiandaoyun"
   label:
     en_US: "jiandaoyun"
@@ -9,7 +9,7 @@ identity:
     en_US: "most popular actions of jiandaoyun"
     zh_Hans: "简道云平台dify支撑插件"
     pt_BR: "most popular actions of jiandaoyun"
-  icon: "icon.svg"
+  icon: "logo.svg"
 tools:
   - tools/getApp.yaml
   - tools/getEntry.yaml

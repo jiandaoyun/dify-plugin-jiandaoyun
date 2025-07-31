@@ -1,6 +1,6 @@
 version: 0.0.1
 type: plugin
-author: hectum_shen
+author: jiandaoyun
 name: jiandaoyun
 label:
   en_US: jiandaoyun
@@ -8,11 +8,11 @@ label:
   zh_Hans: 简道云
   pt_BR: jiandaoyun
 description:
-  en_US: build and do your job with better efficiency using jiandaoyun-dify
-  ja_JP: most popular actions of jiandaoyun
-  zh_Hans: 使用简道云dify，融合AI，创造更智能的工作方式
-  pt_BR: most popular actions of jiandaoyun
-icon: icon.svg
+  en_US: Jiandaoyun is a no-code application building platform that allows users to create customized systems like CRM, ERP, OA, project management, and inventory management without using code
+  ja_JP: ジァンドーユンはノーコードアプリ構築プラットフォームで、ユーザーがCRM、ERP、OA、プロジェクト管理、在庫管理などのカスタマイズされたシステムをコードを使わずに作成できる
+  zh_Hans: 简道云是一个无代码应用搭建平台，用户无需编写代码即可创建CRM、ERP、OA、项目管理、库存管理等定制化系统。
+  pt_BR: Jiandaoyun é uma plataforma de construção de aplicativos sem código que permite aos usuários criar sistemas personalizados como CRM, ERP, OA, gerenciamento de projetos e gerenciamento de inventário sem usar código
+icon: logo.svg
 resource:
   memory: 268435456
   permission: {}

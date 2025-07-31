@@ -16,7 +16,7 @@ class AppTool(Tool):
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
-            raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
+            raise Exception("jiandaoyun api-key is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/list",data=data)
 
@@ -27,7 +27,7 @@ class AppTool(Tool):
 
         response = self.get_app_list({"limit": limit, "skip": offset},tool_parameters.get("base_url"))
         if response.get("status") != "success":
-            raise ValueError(f"获取应用列表失败: {response.get('message', '未知错误')}")
+            raise ValueError(f"Fail to fetch app list: {response.get('message', 'Unknown error')}")
         response = response.get("data")
         # yield self.create_json_message(json_data)
         if output_type == "json":
@@ -37,4 +37,4 @@ class AppTool(Tool):
             output_data = json2table(response["apps"])
             yield self.create_text_message(output_data)
         else:
-            raise ValueError(f"不支持的输出类型: {output_type}，请使用 'json' 或 'table'。")
+            raise ValueError(f"Unsupported output_type: {output_type},please use 'json' or 'table'.")

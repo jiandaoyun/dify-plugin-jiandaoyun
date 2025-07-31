@@ -1,6 +1,6 @@
 identity:
   name: "delete_record"
-  author: "hectum_shen"
+  author: "jiandaoyun"
   label:
     en_US: "delete_record"
     zh_Hans: "删除单条记录"

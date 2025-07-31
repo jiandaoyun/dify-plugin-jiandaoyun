@@ -23,7 +23,7 @@ class GetEntryTool(Tool):
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
-            raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
+            raise Exception("jiandaoyun api-key is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("/v5/app/entry/list", data=data)
 
@@ -31,7 +31,7 @@ class GetEntryTool(Tool):
         # get app_id from tool_parameters
         app_id = tool_parameters.get("app_id")
         if not app_id:
-            raise ValueError("app_id 不能为空")
+            raise ValueError("app_id is required to invoke this tool")
         # try to get limit and offset from tool_parameters, if not provided, use default values
         limit = tool_parameters.get("limit", 100)
         offset = tool_parameters.get("offset", 0)
@@ -42,12 +42,12 @@ class GetEntryTool(Tool):
             "offset": offset
         },tool_parameters.get("base_url"))
         if response.get("status") != "success":
-            raise ValueError(f"获取表单列表失败: {response.get('message', '未知错误')}")
+            raise ValueError(f"Fail to fetch the entry list: {response.get('message', 'Unknown error')}")
         response = response.get("data")
         json_data = {
             "status": "success",
             "data": response,
-            "message": "获取表单列表成功"
+            "message": "Successfully fetched entry list"
         }
         try:
             dumped_data = json.dumps(json_data)

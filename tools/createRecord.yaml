@@ -1,6 +1,6 @@
 identity:
   name: "record_create"
-  author: "hectum_shen"
+  author: "jiandaoyun"
   label:
     en_US: "record create"
     zh_Hans: "新建单条记录"

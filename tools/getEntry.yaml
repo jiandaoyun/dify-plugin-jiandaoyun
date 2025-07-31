@@ -1,13 +1,13 @@
 identity:
   name: "entry_get"
-  author: "hectum_shen"
+  author: "jiandaoyun"
   label:
-    en_US: "entry list get"
+    en_US: "get the form list"
     zh_Hans: "查询全部表单"
     pt_BR: "entry list get"
 description:
   human:
-    en_US: "list all your jiandaoyun entries in an application,according to the api-key permissions"
+    en_US: "list all your jiandaoyun forms in an application,according to the api-key permissions"
     zh_Hans: "管理简道表单，按照api-key的权限返回所有表单及其entry_id"
     pt_BR: "most popular actions of jiandaoyun"
   llm: "list all your jiandaoyun entries in an application(by app_id),this method will return all entries in the application,if you need entry_id, please use this method"

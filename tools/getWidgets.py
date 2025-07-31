@@ -15,7 +15,7 @@ class WidgetTool(Tool):
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
-            raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
+            raise Exception("jiandaoyun api-key is missing or invalid.")
 
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/widget/list", data=data)["data"]
@@ -24,20 +24,20 @@ class WidgetTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         app_id = tool_parameters.get("app_id", "")
         if not app_id:
-            raise ValueError("app_id 不能为空")
+            raise ValueError("app_id is required to invoke this tool")
         entry_id = tool_parameters.get("entry_id", "")
         if not entry_id:
-            raise ValueError("entry_id 不能为空")
+            raise ValueError("entry_id is required to invoke this tool")
         output_type = tool_parameters.get("output_type", "json")
         widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id},tool_parameters.get("base_url"))
         try:
             dumped_data = json.dumps(widget_data)
         except json.JSONDecodeError:
-            raise ValueError("返回的数据不是有效的 JSON 格式")
+            raise ValueError("JSON decoding error: the response is not a valid JSON format")
         data = {
             "status": "success",
             "data": widget_data,
-            "message": "获取字段列表成功"
+            "message": "Successfully fetched widget list"
         }
         # yield self.create_json_message(data)
         if output_type == "json":

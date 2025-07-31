@@ -22,7 +22,7 @@ class DatagetTool(Tool):
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
-            raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
+            raise Exception("jiandaoyun api-key is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/get", data=data)
 
@@ -31,13 +31,13 @@ class DatagetTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         app_id = tool_parameters.get("app_id", "")
         if not app_id:
-            raise ValueError("app_id 不能为空")
+            raise ValueError("app_id is required to invoke this tool")
         entry_id = tool_parameters.get("entry_id", "")
         if not entry_id:
-            raise ValueError("entry_id 不能为空")
+            raise ValueError("entry_id is required to invoke this tool")
         data_id = tool_parameters.get("data_id", None)
         if not data_id:
-            raise ValueError("data_id 不能为空")
+            raise ValueError("data_id is required to invoke this tool")
         output_type = tool_parameters.get("output_type", "json")
         response = self.get_data({
             "app_id": app_id,
@@ -45,12 +45,12 @@ class DatagetTool(Tool):
             "data_id": data_id
         },tool_parameters.get("base_url"))
         if response.get("status") != "success":
-            raise ValueError(f"获取数据失败: {response.get('message', '未知错误')}")
+            raise ValueError(f"Fail to fetch the record: {response.get('message', 'Unknown error')}")
         response_data = response["data"]
         try:
             json_data = json.dumps(response_data)
         except json.decoder.JSONDecodeError:
-            raise ValueError("返回的数据不是有效的 JSON 格式")
+            raise ValueError("JSON decoding error: the response is not a valid JSON format")
         if output_type == "json":
             yield self.create_text_message(json_data)
         elif output_type == "table":

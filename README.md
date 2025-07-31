@@ -26,7 +26,7 @@ Using a specific data_id, along with the entry_id and app_id, this function upda
 ### 5. Delete a Single Record (Delete Data)  
 Deletes a single record with the specified data_id.
 
-### 6. Query All Forms (Query Entries)  
+### 6. Query All Forms (Query Forms)  
 Given a provided app_id, this function retrieves information about all forms within the specified application. The response is returned in both text and JSON formats, including form names and entry_ids. Pagination is supported using the `limit` and `offset` parameters.
 
 ### 7. Query Multiple Records (Query Data List)  

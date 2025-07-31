@@ -21,7 +21,7 @@ class DatacreateTool(Tool):
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
-            raise Exception("简道云 Access Token 未配置或无效。请在插件设置中提供。")
+            raise Exception("jiandaoyun api-key is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/create", data=data)["data"]
 

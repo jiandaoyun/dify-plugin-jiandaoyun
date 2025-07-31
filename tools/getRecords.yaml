@@ -1,6 +1,6 @@
 identity:
   name: "get_records"
-  author: "hectum_shen"
+  author: "jiandaoyun"
   label:
     en_US: "dataget"
     zh_Hans: "查询多条数据"
@@ -85,16 +85,16 @@ parameters:
         \"method\": \"empty\"      },\n      {       \"field\": \"_widget_1508400000002\",   \"type\": \"number\",\
         \"method\": \"not_empty\" },]
     there exists such conditions:
-    “not_empty”(不为空)，
-    “empty”(为空)，
-    “eq”(等于)，
-    “in”(等于任意一个)，最多可传递 200 个
-    “range”(在x与y之间，并且包含x和y本身)，
-    “nin”(不等于任意一个)，最多可传递 200 个
-    “ne”(不等于),
-    “like”(包含)
-    “verified“(表示填写了手机号且已验证的值)
-    “unverified“(表示填写了手机号但未验证值)"
+    “not_empty”,
+    “empty”,
+    “eq”,
+    “in”,200 at most,
+    “range”,[x,y]，
+    “nin”,not in,200 at most,
+    “ne”,not equal,
+    “like”,includes,
+    “verified“,
+    “unverified”,"
     form: llm
   - name: limit
     type: number

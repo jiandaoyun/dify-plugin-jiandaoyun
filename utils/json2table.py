@@ -1,4 +1,3 @@
-
 def json2table(json_data: list) -> str:
     """
     Convert JSON data to a Markdown table.

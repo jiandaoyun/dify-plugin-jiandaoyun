@@ -9,23 +9,22 @@ from utils.httpclient import APIRequestTool
 
 
 class CreateRecordTool(Tool):
-    '''
+    """
     @请求参数：
     {
       "app_id": "",
       "entry_id": "",
       "data_id": ""
     }
-    '''
-    def create_data(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
+    """
+
+    def create_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("jiandaoyun api-key is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/create", data=data)["data"]
-
-
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         app_id = tool_parameters.get("app_id", "")
@@ -34,17 +33,19 @@ class CreateRecordTool(Tool):
         entry_id = tool_parameters.get("entry_id", None)
         if not entry_id:
             raise ValueError("entry_id is required to invoke this tool")
-        data = tool_parameters['data']# string形式的json，因此处理时候需要解析
+        data = tool_parameters["data"]
         try:
             loaded_data = json.loads(data)
         except json.JSONDecodeError:
             raise ValueError("data must be a valid JSON string")
-        data = self.create_data({"app_id": app_id, "entry_id": entry_id, "data":loaded_data },tool_parameters.get("base_url"))
+        data = self.create_data(
+            {"app_id": app_id, "entry_id": entry_id, "data": loaded_data},
+            tool_parameters.get("base_url"),
+        )
         json_data = {
             "status": "success",
             "data": data,
-            "message": "Data created successfully"
+            "message": "Data created successfully",
         }
         # yield self.create_json_message(json_data)
         yield self.create_text_message(str(json_data))
-

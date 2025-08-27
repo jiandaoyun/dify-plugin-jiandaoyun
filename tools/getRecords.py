@@ -11,14 +11,13 @@ from utils.json2table import json2table
 
 class DatagetlistTool(Tool):
 
-    def getDataList(self, data: dict[str, Any],base_url) -> dict[str, Any]:
+    def getDataList(self, data: dict[str, Any], base_url) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
             raise Exception("apikey is missing or invalid.")
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/data/list", data=data)["data"]
-
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         app_id = tool_parameters.get("app_id", "")
@@ -28,24 +27,28 @@ class DatagetlistTool(Tool):
         if not entry_id:
             raise ValueError("entry_id is required to invoke this tool")
         output_type = tool_parameters.get("output_type", "json")
-        data = self.getDataList({
-            "app_id": app_id,
-            "entry_id": entry_id,
-            "data_id": tool_parameters.get("data_id", None),
-            "fields":  tool_parameters.get("fields", None),
-            # array形式的字段列表，若不传则返回全部字段,
-            "filter": tool_parameters.get("filter", "{}"),  # 字段过滤条件，json格式
-            "limit": tool_parameters.get("limit", 10),  # 默认100条
-        },tool_parameters.get("base_url"))
+        data = self.getDataList(
+            {
+                "app_id": app_id,
+                "entry_id": entry_id,
+                "data_id": tool_parameters.get("data_id", None),
+                "fields": tool_parameters.get("fields", None),
+                "filter": tool_parameters.get("filter", "{}"),
+                "limit": tool_parameters.get("limit", 10),
+            },
+            tool_parameters.get("base_url"),
+        )
         json_data = {
             "status": "success",
             "data": data,
-            "message": "Successfully fetched data list"
+            "message": "Successfully fetched data list",
         }
         try:
             json_str = json.dumps(json_data)
         except json.JSONDecodeError:
-            raise ValueError("JSON decoding error: the response is not a valid JSON format")
+            raise ValueError(
+                "JSON decoding error: the response is not a valid JSON format"
+            )
         if output_type == "table":
             output_data = json2table(data["data"])
             yield self.create_text_message(output_data)

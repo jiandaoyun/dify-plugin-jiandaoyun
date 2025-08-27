@@ -18,15 +18,15 @@ class APIRequestTool:
             self.base_url = base_url.rstrip("/") + "/"
         self.headers = {
             "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
 
     def make_request(
-            self,
-            method: str,
-            endpoint: str,
-            params: Optional[Dict[str, Any]] = None,
-            data: Optional[Dict[str, Any]] = None
+        self,
+        method: str,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
         通用请求方法，支持 GET、POST、PUT、PATCH、DELETE 等。
@@ -51,7 +51,7 @@ class APIRequestTool:
                 headers=self.headers,
                 params=params,
                 json=data,
-                timeout=10  # 设置超时时间
+                timeout=10,  # 设置超时时间
             )
 
             # 检查响应状态
@@ -66,41 +66,42 @@ class APIRequestTool:
             return {
                 "status": "success",
                 "data": response_data,
-                "message": "Request completed successfully"
+                "message": "Request completed successfully",
             }
 
         except requests.exceptions.HTTPError as http_err:
             return {
                 "status": "error",
                 "data": None,
-                "message": f"HTTP error occurred: {str(http_err)}"
+                "message": f"HTTP error occurred: {str(http_err)}",
             }
         except requests.exceptions.ConnectionError:
             return {
                 "status": "error",
                 "data": None,
-                "message": "Failed to connect to the server"
+                "message": "Failed to connect to the server",
             }
         except requests.exceptions.Timeout:
-            return {
-                "status": "error",
-                "data": None,
-                "message": "Request timed out"
-            }
+            return {"status": "error", "data": None, "message": "Request timed out"}
         except requests.exceptions.RequestException as req_err:
             return {
                 "status": "error",
                 "data": None,
-                "message": f"Request failed: {str(req_err)}"
+                "message": f"Request failed: {str(req_err)}",
             }
 
     def create(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """封装 POST 请求，用于创建资源"""
         return self.make_request("POST", endpoint, data=data)
 
-    def read(self, endpoint: str, params: Optional[Dict[str, Any]] = None,data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    def read(
+        self,
+        endpoint: str,
+        params: Optional[Dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
+    ) -> Dict[str, Any]:
         """封装 GET 请求，用于查询资源"""
-        return self.make_request("GET", endpoint, params=params,data=data)
+        return self.make_request("GET", endpoint, params=params, data=data)
 
     def update(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """封装 PUT 请求，用于更新资源"""

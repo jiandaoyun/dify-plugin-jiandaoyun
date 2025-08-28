@@ -10,12 +10,7 @@ from utils.httpclient import APIRequestTool
 
 class CreateRecordTool(Tool):
     """
-    @requestParams：
-    {
-      "app_id": "",
-      "entry_id": "",
-      "data_id": ""
-    }
+    create a record in jiandaoyun
     """
     def create_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:

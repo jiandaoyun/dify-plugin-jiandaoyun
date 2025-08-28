@@ -10,7 +10,9 @@ from utils.json2table import json2table
 
 
 class AppTool(Tool):
-
+    """
+    get app list in jiandaoyun
+    """
     def get_app_list(self, data: Dict[str, Any], base_url: str) -> Dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

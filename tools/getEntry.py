@@ -11,15 +11,8 @@ from utils.json2table import json2table
 
 class GetEntryTool(Tool):
     """
-     get the entry list of a specific application
-    @requestParams：
-    {
-        "app_id": "app_id", # necessary
-        "limit": 100,  # optional
-        "offset": 0    # optional, default is 0
-    }
+    get the entry list of a specific application
     """
-
     def getEntryList(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

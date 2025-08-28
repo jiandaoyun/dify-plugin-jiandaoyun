@@ -9,12 +9,7 @@ from utils.httpclient import APIRequestTool
 
 class DatacreateTool(Tool):
     """
-    @requestParams：
-    {
-      "app_id": "",
-      "entry_id": "",
-      "data_id": ""
-    }
+    create data in batch in jiandaoyun
     """
 
     def create_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:

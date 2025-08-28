@@ -11,12 +11,7 @@ from utils.json2table import json2table
 
 class DatagetTool(Tool):
     """
-    @requestParams：
-    {
-      "app_id": "",
-      "entry_id": "",
-      "data_id": ""
-    }
+    get a record in jiandaoyun
     """
 
     def get_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:

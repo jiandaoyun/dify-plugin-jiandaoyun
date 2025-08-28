@@ -5,13 +5,10 @@ import requests
 
 
 class APIRequestTool:
+    """
+    A simple HTTP client for making API requests with support for GET, POST, PUT, DELETE methods.
+    """
     def __init__(self, base_url: str, token: str):
-        """
-        init request tool
-        Args:
-            base_url (str): API base URL
-            token (str): authorization token
-        """
         if not base_url:
             self.base_url = "https://api.jiandaoyun.com/api/"
         else:
@@ -28,16 +25,6 @@ class APIRequestTool:
         params: Optional[Dict[str, Any]] = None,
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
-        """
-        universal request method
-        Args:
-            method (str): HTTP method (GET, POST, PUT, DELETE)
-            endpoint (str): API endpoint
-            params (Optional[Dict[str, Any]]): Query parameters for GET requests
-            data (Optional[Dict[str, Any]]): JSON body for POST/PUT requests
-        Returns:
-            Dict[str, Any]: Response data or error message
-        """
         url = urljoin(self.base_url, endpoint.lstrip("/"))
         try:
             response = requests.request(

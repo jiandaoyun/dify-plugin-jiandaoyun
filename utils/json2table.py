@@ -1,12 +1,6 @@
 def json2table(json_data: list) -> str:
     """
-    Convert JSON data to a Markdown table.
-
-    Args:
-        json_data (list): List of dictionaries representing JSON data.
-
-    Returns:
-        str: A string representation of the Markdown table.
+    util to convert JSON data to a Markdown table.
     """
     if not json_data:
         return "No data available"

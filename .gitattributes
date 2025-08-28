@@ -1,7 +1,0 @@
-*.png filter=lfs diff=lfs merge=lfs -text
-*.svg filter=lfs diff=lfs merge=lfs -text
-_assets/*.png filter=lfs diff=lfs merge=lfs -text
-_assets/*.jpg filter=lfs diff=lfs merge=lfs -text
-_assets/*.jpeg filter=lfs diff=lfs merge=lfs -text
-_assets/*.gif filter=lfs diff=lfs merge=lfs -text
-_assets/*.svg filter=lfs diff=lfs merge=lfs -text

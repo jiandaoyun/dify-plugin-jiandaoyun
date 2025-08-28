@@ -10,7 +10,7 @@ from utils.httpclient import APIRequestTool
 
 class CreateRecordTool(Tool):
     """
-    @请求参数：
+    @requestParams：
     {
       "app_id": "",
       "entry_id": "",

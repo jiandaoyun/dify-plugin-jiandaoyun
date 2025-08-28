@@ -6,11 +6,10 @@ from urllib.parse import urljoin
 class APIRequestTool:
     def __init__(self, base_url: str, token: str):
         """
-        初始化请求工具，设置基础 URL 和用户 token。
-
+        init request tool
         Args:
-            base_url (str): API 的基础 URL，例如 "https://api.example.com/"
-            token (str): 用户的认证 token
+            base_url (str): API base URL
+            token (str): authorization token
         """
         if not base_url:
             self.base_url = "https://api.jiandaoyun.com/api/"
@@ -29,40 +28,33 @@ class APIRequestTool:
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
-        通用请求方法，支持 GET、POST、PUT、PATCH、DELETE 等。
-
+        universal request method
         Args:
-            method (str): HTTP 方法（get, post, put, patch, delete）
-            endpoint (str): API 端点路径，例如 "create" 或 "delete/123"
-            params (dict, optional): 查询参数
-            data (dict, optional): 请求体数据（JSON 格式）
-
+            method (str): HTTP method (GET, POST, PUT, DELETE)
+            endpoint (str): API endpoint
+            params (Optional[Dict[str, Any]]): Query parameters for GET requests
+            data (Optional[Dict[str, Any]]): JSON body for POST/PUT requests
         Returns:
-            dict: 包含状态、数据和消息的响应
+            Dict[str, Any]: Response data or error message
         """
-        # 拼接完整 URL
         url = urljoin(self.base_url, endpoint.lstrip("/"))
         # print("request url:", url)
         try:
-            # 发起请求
             response = requests.request(
                 method=method.upper(),
                 url=url,
                 headers=self.headers,
                 params=params,
                 json=data,
-                timeout=10,  # 设置超时时间
+                timeout=10,
             )
 
-            # 检查响应状态
             response.raise_for_status()
 
-            # 尝试解析 JSON 响应
             try:
                 response_data = response.json()
             except ValueError:
                 response_data = {"raw_response": response.text}
-            # print("response_data:", response_data)
             return {
                 "status": "success",
                 "data": response_data,
@@ -91,7 +83,6 @@ class APIRequestTool:
             }
 
     def create(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """封装 POST 请求，用于创建资源"""
         return self.make_request("POST", endpoint, data=data)
 
     def read(
@@ -100,13 +91,10 @@ class APIRequestTool:
         params: Optional[Dict[str, Any]] = None,
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
-        """封装 GET 请求，用于查询资源"""
         return self.make_request("GET", endpoint, params=params, data=data)
 
     def update(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """封装 PUT 请求，用于更新资源"""
         return self.make_request("PUT", endpoint, data=data)
 
     def delete(self, endpoint: str) -> Dict[str, Any]:
-        """封装 DELETE 请求，用于删除资源"""
         return self.make_request("DELETE", endpoint)

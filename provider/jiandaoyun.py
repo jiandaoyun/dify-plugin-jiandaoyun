@@ -9,6 +9,6 @@ class JiandaoyunProvider(ToolProvider):
         try:
             """response = requests.get("https://api.jiandaoyun.com/api/health_check ", headers={"Authorization": f"Bearer {api_key}"})
             if response.status_code != 200:
-                raise ValueError("API Key 无效，请重新输入")"""
+                raise ValueError("API Key is invalid or expired."))"""
         except Exception as e:
             raise ToolProviderCredentialValidationError(str(e))

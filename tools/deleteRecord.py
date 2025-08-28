@@ -44,5 +44,4 @@ class DataupdateTool(Tool):
             "message": "Data deleted successfully",
         }
 
-        # yield self.create_json_message(json_data)
         yield self.create_text_message(json.dumps(json_data))

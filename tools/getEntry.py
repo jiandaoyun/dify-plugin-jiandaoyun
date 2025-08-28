@@ -10,8 +10,8 @@ from utils.json2table import json2table
 
 
 class GetEntryTool(Tool):
-    # get the entry list of a specific application
     """
+     get the entry list of a specific application
     @requestParams：
     {
         "app_id": "app_id", # necessary
@@ -53,7 +53,6 @@ class GetEntryTool(Tool):
             dumped_data = json.dumps(json_data)
         except json.JSONDecodeError:
             raise ValueError("the response is not a valid JSON format")
-        # yield self.create_json_message(json_data)
         if output_type == "json":
             yield self.create_text_message(dumped_data)
         elif output_type == "table":

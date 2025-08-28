@@ -37,11 +37,6 @@ class WidgetTool(Tool):
             raise ValueError(
                 "JSON decoding error: the response is not a valid JSON format"
             )
-        data = {
-            "status": "success",
-            "data": widget_data,
-            "message": "Successfully fetched widget list",
-        }
         if output_type == "json":
             yield self.create_text_message(str(dumped_data))
         elif output_type == "table":

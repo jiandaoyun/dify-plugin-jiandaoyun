@@ -1,6 +1,7 @@
-import requests
 from typing import Dict, Any, Optional
 from urllib.parse import urljoin
+
+import requests
 
 
 class APIRequestTool:
@@ -38,7 +39,6 @@ class APIRequestTool:
             Dict[str, Any]: Response data or error message
         """
         url = urljoin(self.base_url, endpoint.lstrip("/"))
-        # print("request url:", url)
         try:
             response = requests.request(
                 method=method.upper(),

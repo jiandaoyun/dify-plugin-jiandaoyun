@@ -17,7 +17,6 @@ class CreateRecordTool(Tool):
       "data_id": ""
     }
     """
-
     def create_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
@@ -47,5 +46,4 @@ class CreateRecordTool(Tool):
             "data": data,
             "message": "Data created successfully",
         }
-        # yield self.create_json_message(json_data)
         yield self.create_text_message(str(json_data))

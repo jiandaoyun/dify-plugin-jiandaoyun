@@ -22,7 +22,7 @@ To start using the Jiandaoyun Dify plugin, ensure you have installed it from the
 
 1.Open the PLUGINS page ,click the "Jiandaoyun" plugin, and you will see the following interface:
 
-![img.png](assets/img.png)
+![img.png](_assets/img.png)
 
 2.click To Authorize, fill in your API key(if you don't have one, please refer to the "Installation and Usage" section below to obtain it), and then click "Save".Then you've get your apiKey configured.
 
@@ -31,16 +31,16 @@ To start using the Jiandaoyun Dify plugin, ensure you have installed it from the
 To create a new record in a specific form, you can prompt:
 "Use the Jiandaoyun plugin to create a new record in the form with entry_id 'your_entry_id' and app_id 'your_app_id', with the following data: {field1: value1, field2: value2}."
 
-![tools_usage.png](assets/tools_usage.png)
+![tools_usage.png](_assets/tools_usage.png)
 
 4.then use an agent which can call the tool to complete the operation.
 Before the agent works, you should fill in the neceesary fields(the server url if you are not using the official jiandaoyun api center; app_id and entry_id if necessary):
 
-![img.png](assets/list_entry.png)
+![img.png](_assets/list_entry.png)
 
 5.You should also tell the agent your app_id in reasoning config:
 
-![img.png](assets/reasoning_config.png)
+![img.png](_assets/reasoning_config.png)
 
 then the plugin will work well.
 

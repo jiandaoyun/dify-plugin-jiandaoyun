@@ -10,16 +10,11 @@ from utils.json2table import json2table
 
 
 class GetEntryTool(Tool):
-    #获取app下全部表单信息
-    '''
-    @请求参数：
-    {
-        "app_id": "应用ID",
-        "limit": 100,  # 可选，默认100
-        "offset": 0    # 可选，默认0
-    }
-    '''
-    def getEntryList(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
+    """
+    get the entry list of a specific application
+    """
+
+    def getEntryList(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
@@ -28,32 +23,30 @@ class GetEntryTool(Tool):
         return httpClient.create("/v5/app/entry/list", data=data)
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
-        # get app_id from tool_parameters
         app_id = tool_parameters.get("app_id")
         if not app_id:
             raise ValueError("app_id is required to invoke this tool")
-        # try to get limit and offset from tool_parameters, if not provided, use default values
         limit = tool_parameters.get("limit", 100)
         offset = tool_parameters.get("offset", 0)
         output_type = tool_parameters.get("output_type", "json")
-        response = self.getEntryList({
-            "app_id": app_id,
-            "limit": limit,
-            "offset": offset
-        },tool_parameters.get("base_url"))
+        response = self.getEntryList(
+            {"app_id": app_id, "limit": limit, "offset": offset},
+            tool_parameters.get("base_url"),
+        )
         if response.get("status") != "success":
-            raise ValueError(f"Fail to fetch the entry list: {response.get('message', 'Unknown error')}")
+            raise ValueError(
+                f"Fail to fetch the entry list: {response.get('message', 'Unknown error')}"
+            )
         response = response.get("data")
         json_data = {
             "status": "success",
             "data": response,
-            "message": "Successfully fetched entry list"
+            "message": "Successfully fetched entry list",
         }
         try:
             dumped_data = json.dumps(json_data)
         except json.JSONDecodeError:
-            raise ValueError("返回的数据不是有效的 JSON 格式")
-        # yield self.create_json_message(json_data)
+            raise ValueError("the response is not a valid JSON format")
         if output_type == "json":
             yield self.create_text_message(dumped_data)
         elif output_type == "table":

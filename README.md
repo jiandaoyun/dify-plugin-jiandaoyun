@@ -36,6 +36,26 @@ Using app_id and entry_id, this function performs batch queries on data within a
 Using app_id and entry_id, this function retrieves information about all fields within a specified form. The response is returned in both text and JSON formats, including field name, type, and whether the field is required.
 
 ## Installation and Usage  
+To start using the Jiandaoyun Dify plugin, ensure you have installed it from the marketplace and configured it with your API key——
+Open the PLUGINS page ,click the "Jiandaoyun" plugin, and you will see the following interface:
+![img.png](_assets/img.png)
+click To Authorize, fill in your API key(if you don't have one, please refer to the "Installation and Usage" section below to obtain it), and then click "Save".Then you've get your apiKey configured.
+
+Then you can use the plugin in your conversations by invoking its functions. For example, to query all applications, you can say:
+```"Use the Jiandaoyun plugin to query all applications."```
+To create a new record in a specific form, you can prompt:
+"Use the Jiandaoyun plugin to create a new record in the form with entry_id 'your_entry_id' and app_id 'your_app_id', with the following data: {field1: value1, field2: value2}."
+
+![tools_usage.png](_assets/tools_usage.png)
+then use an agent to call the tool to complete the operation.
+Before the agent works, you should fill in the neceesary fields(the server url if you are not using the official jiandaoyun api center; app_id and entry_id if necessary):
+
+![img.png](_assets/list_entry.png)
+You should also tell the agent your app_id in reasoning config:
+
+![img.png](_assets/reasoning_config.png)
+then the plugin will work well.
+
 ### Prerequisites  
 No specific prerequisites.
 

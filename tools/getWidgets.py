@@ -10,8 +10,11 @@ from utils.json2table import json2table
 
 
 class WidgetTool(Tool):
+    """
+    get widgets of a form in jiandaoyun
+    """
 
-    def getWidget(self, data: dict[str, Any],base_url:str) -> dict[str, Any]:
+    def getWidget(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
         except KeyError:
@@ -19,7 +22,6 @@ class WidgetTool(Tool):
 
         httpClient = APIRequestTool(base_url=base_url, token=access_token)
         return httpClient.create("v5/app/entry/widget/list", data=data)["data"]
-
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         app_id = tool_parameters.get("app_id", "")
@@ -29,17 +31,15 @@ class WidgetTool(Tool):
         if not entry_id:
             raise ValueError("entry_id is required to invoke this tool")
         output_type = tool_parameters.get("output_type", "json")
-        widget_data = self.getWidget({"app_id": app_id, "entry_id": entry_id},tool_parameters.get("base_url"))
+        widget_data = self.getWidget(
+            {"app_id": app_id, "entry_id": entry_id}, tool_parameters.get("base_url")
+        )
         try:
             dumped_data = json.dumps(widget_data)
         except json.JSONDecodeError:
-            raise ValueError("JSON decoding error: the response is not a valid JSON format")
-        data = {
-            "status": "success",
-            "data": widget_data,
-            "message": "Successfully fetched widget list"
-        }
-        # yield self.create_json_message(data)
+            raise ValueError(
+                "JSON decoding error: the response is not a valid JSON format"
+            )
         if output_type == "json":
             yield self.create_text_message(str(dumped_data))
         elif output_type == "table":

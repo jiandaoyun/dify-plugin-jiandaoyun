@@ -138,7 +138,7 @@ jobs:
             --body "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin package to version ${{ steps.get_basic_info.outputs.version }}
 
             Changes:
-            - Updated plugin version to ${{ steps.get_basic_info.outputs.plugin_name }}-plugin-${{ steps.get_basic_info.outputs.version }} || echo "PR already exists or creation skipped." # Handle cases where PR already exists
+            - Updated plugin version to ${{ steps.get_basic_info.outputs.plugin_name }}-plugin-${{ steps.get_basic_info.outputs.version }}" || echo "PR already exists or creation skipped." # Handle cases where PR already exists
 
       - name: Print environment info # Kept for debugging
         run: |

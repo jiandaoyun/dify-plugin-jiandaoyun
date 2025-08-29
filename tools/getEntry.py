@@ -13,6 +13,7 @@ class GetEntryTool(Tool):
     """
     get the entry list of a specific application
     """
+
     def getEntryList(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

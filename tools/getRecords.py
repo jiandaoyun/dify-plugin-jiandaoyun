@@ -13,6 +13,7 @@ class DatagetlistTool(Tool):
     """
     get records list from jiandaoyun
     """
+
     def getDataList(self, data: dict[str, Any], base_url) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

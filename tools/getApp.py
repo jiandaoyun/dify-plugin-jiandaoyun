@@ -13,6 +13,7 @@ class AppTool(Tool):
     """
     get app list in jiandaoyun
     """
+
     def get_app_list(self, data: Dict[str, Any], base_url: str) -> Dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
@@ -31,7 +32,7 @@ class AppTool(Tool):
         )
         if response.get("status") != "success":
             raise ValueError(
-                f"Fail to fetch app list: {response.get('message', 'Unknown error')}"
+                f"Fail to fetch the app list: {response.get('message', 'Unknown error')}"
             )
         response = response.get("data")
         if output_type == "json":
@@ -42,5 +43,6 @@ class AppTool(Tool):
             yield self.create_text_message(output_data)
         else:
             raise ValueError(
-                f"Unsupported output_type: {output_type},please use 'json' or 'table'."
+                f"""Unsupported output_type: {output_type}
+                (supported types: "json", "table")"""
             )

@@ -12,6 +12,7 @@ class CreateRecordTool(Tool):
     """
     create a record in jiandaoyun
     """
+
     def create_data(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

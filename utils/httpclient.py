@@ -8,6 +8,7 @@ class APIRequestTool:
     """
     A simple HTTP client for making API requests with support for GET, POST, PUT, DELETE methods.
     """
+
     def __init__(self, base_url: str, token: str):
         if not base_url:
             self.base_url = "https://api.jiandaoyun.com/api/"

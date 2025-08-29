@@ -33,5 +33,9 @@ class DatacreateTool(Tool):
             {"app_id": app_id, "entry_id": entry_id, "data_list": data_list},
             tool_parameters.get("base_url"),
         )
-        json_data = {"status": "success", "data": data, "message": "Data created successfully"}
+        json_data = {
+            "status": "success",
+            "data": data,
+            "message": "Data created successfully",
+        }
         yield self.create_text_message(str(json_data))

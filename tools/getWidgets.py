@@ -13,6 +13,7 @@ class WidgetTool(Tool):
     """
     get widgets of a form in jiandaoyun
     """
+
     def getWidget(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]

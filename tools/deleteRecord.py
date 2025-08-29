@@ -12,6 +12,7 @@ class DataupdateTool(Tool):
     """
     delete a record in jiandaoyun
     """
+
     def updateData(self, data: dict[str, Any], base_url: str) -> dict[str, Any]:
         try:
             access_token = self.runtime.credentials["jiandaoyun_api_key"]
